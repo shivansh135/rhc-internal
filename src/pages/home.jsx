@@ -15,6 +15,7 @@ import UpcomingEvents from '../components/UpcomingEvents';
 import { useMsal } from '@azure/msal-react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { loginRequest } from '../authConfig';
 
 const Home = () => {
   const { instance, accounts } = useMsal();
@@ -31,6 +32,7 @@ const Home = () => {
         try {
           const response = await instance.acquireTokenSilent(request);
           setAccessToken(response.accessToken);
+          console.log(response.accessToken)
         } catch (error) {
           if (error instanceof InteractionRequiredAuthError) {
             instance.acquireTokenRedirect(request);
