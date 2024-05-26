@@ -5,7 +5,7 @@ export const msalConfig = {
       redirectUri: "https://rhc-internal.vercel.app/", 
     },
     cache: {
-      cacheLocation: "sessionStorage", 
+      cacheLocation: "localStorage", 
       storeAuthStateInCookie: true, 
     },
   };

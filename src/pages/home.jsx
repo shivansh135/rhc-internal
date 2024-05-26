@@ -18,16 +18,27 @@ const Home = () => {
   const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
-    const request = {
-      ...loginRequest,
-      account: accounts[0],
+    const acquireToken = async () => {
+      if (accounts.length > 0) {
+        const request = {
+          ...loginRequest,
+          account: accounts[0],
+        };
+
+        try {
+          const response = await instance.acquireTokenSilent(request);
+          setAccessToken(response.accessToken);
+        } catch (error) {
+          if (error instanceof InteractionRequiredAuthError) {
+            instance.acquireTokenRedirect(request);
+          } else {
+            console.error(error);
+          }
+        }
+      }
     };
 
-    instance.acquireTokenSilent(request).then(response => {
-      setAccessToken(response.accessToken);
-    }).catch(error => {
-      instance.acquireTokenRedirect(request);
-    });
+    acquireToken();
   }, [instance, accounts]);
 
   return (
