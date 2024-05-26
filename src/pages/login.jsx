@@ -7,7 +7,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      await instance.loginRedirect(loginRequest);
+      const loginRes = await instance.loginRedirect(loginRequest);
     } catch (error) {
       console.error(error);
     }
