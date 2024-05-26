@@ -13,6 +13,8 @@ import Poll from '../components/Poll';
 import QuickLinks from '../components/QuickLinks';
 import UpcomingEvents from '../components/UpcomingEvents';
 import { useMsal } from '@azure/msal-react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Home = () => {
   const { instance, accounts } = useMsal();
