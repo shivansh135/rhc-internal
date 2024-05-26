@@ -14,8 +14,35 @@ import QuickLinks from '../components/QuickLinks';
 import UpcomingEvents from '../components/UpcomingEvents';
 
 const Home = () => {
+  const { instance, accounts } = useMsal();
+  const [accessToken, setAccessToken] = useState(null);
+
+  useEffect(() => {
+    const request = {
+      ...loginRequest,
+      account: accounts[0],
+    };
+
+    instance.acquireTokenSilent(request).then(response => {
+      setAccessToken(response.accessToken);
+    }).catch(error => {
+      instance.acquireTokenRedirect(request);
+    });
+  }, [instance, accounts]);
+
   return (
     <div className="px-[30px] bg-[#F4F8FB] w-full">
+      <div>
+      <h1>Home</h1>
+      {accessToken ? (
+        <div>
+          <h2>Access Token:</h2>
+          <p>{accessToken}</p>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
       <div className="flex gap-[30px]">
         <div className="w-[66vw]">
           <div className="w-full h-[400px] rounded-lg overflow-hidden">

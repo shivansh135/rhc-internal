@@ -1,13 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { MsalAuthenticationTemplate, MsalProvider, useMsal } from '@azure/msal-react';
+import { MsalAuthenticationTemplate, MsalProvider, useIsAuthenticated } from '@azure/msal-react';
 import { PublicClientApplication } from '@azure/msal-browser';
 import Home from './pages/home';
-import PrivateRoute from './components/PrivateRoute';
-import Login from './pages/login'; // Create a simple login page if necessary
 import { msalConfig, loginRequest } from './authConfig';
 
 const msalInstance = new PublicClientApplication(msalConfig);
+
+const PrivateRoute = ({ children }) => {
+  const isAuthenticated = useIsAuthenticated();
+
+  if (!isAuthenticated) {
+    return (
+      <MsalAuthenticationTemplate interactionType="redirect" authenticationRequest={loginRequest}>
+        {children}
+      </MsalAuthenticationTemplate>
+    );
+  }
+
+  return children;
+};
 
 const App = () => {
   return (
@@ -17,14 +29,11 @@ const App = () => {
           <Route
             path="/"
             element={
-              <MsalAuthenticationTemplate interactionType="redirect" authenticationRequest={loginRequest}>
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              </MsalAuthenticationTemplate>
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
             }
           />
-          <Route path="/login" element={<Login />} />
           {/* Add other routes as needed */}
         </Routes>
       </Router>
