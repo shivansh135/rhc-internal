@@ -1,39 +1,34 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { MsalAuthenticationTemplate, useMsal } from '@azure/msal-react';
+import { MsalAuthenticationTemplate, MsalProvider, useMsal } from '@azure/msal-react';
+import { PublicClientApplication } from '@azure/msal-browser';
 import Home from './pages/home';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/login'; // Create a simple login page if necessary
-import { loginRequest } from './authConfig';
+import { msalConfig, loginRequest } from './authConfig';
+
+const msalInstance = new PublicClientApplication(msalConfig);
 
 const App = () => {
-  const { instance } = useMsal();
-
-  const handleLogin = async () => {
-    try {
-      await instance.loginPopup(loginRequest);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <MsalAuthenticationTemplate interactionType="popup" authenticationRequest={loginRequest}>
-              <PrivateRoute>
-                <Home />
-              </PrivateRoute>
-            </MsalAuthenticationTemplate>
-          }
-        />
-        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-        {/* Add other routes as needed */}
-      </Routes>
-    </Router>
+    <MsalProvider instance={msalInstance}>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MsalAuthenticationTemplate interactionType="redirect" authenticationRequest={loginRequest}>
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              </MsalAuthenticationTemplate>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          {/* Add other routes as needed */}
+        </Routes>
+      </Router>
+    </MsalProvider>
   );
 };
 
