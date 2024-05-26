@@ -12,6 +12,7 @@ import Planner from '../components/Planner';
 import Poll from '../components/Poll';
 import QuickLinks from '../components/QuickLinks';
 import UpcomingEvents from '../components/UpcomingEvents';
+import { useMsal } from '@azure/msal-react';
 
 const Home = () => {
   const { instance, accounts } = useMsal();
