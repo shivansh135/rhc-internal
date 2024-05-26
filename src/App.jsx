@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { MsalAuthenticationTemplate, MsalProvider, useIsAuthenticated } from '@azure/msal-react';
+import { MsalAuthenticationTemplate, MsalProvider, useIsAuthenticated, useMsal } from '@azure/msal-react';
 import { PublicClientApplication } from '@azure/msal-browser';
 import Home from './pages/home';
 import { msalConfig, loginRequest } from './authConfig';
