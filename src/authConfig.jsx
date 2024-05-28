@@ -14,3 +14,11 @@ export const msalConfig = {
     scopes: ["User.Read"],
   };
   
+ 
+
+  export const tokenScopes = [
+    "user.read",
+    "Tasks.Read",
+    // "Group.Read.All",
+    "Calendars.Read",
+  ]
