@@ -29,7 +29,7 @@ const Calendar = ({ events }) => {
         {events.map((event, index) => (
           <div key={index} className="flex items-stretch border-[1px] border-[#50917F] rounded-lg">
             <div className="px-[25px] border-r-[1px] border-r-[#50917F] flex flex-col justify-center flex-grow-0">
-              <h1 className="text-[24px] font-medium">{event.day}</h1>
+              <h1 className="text-[24px] font-medium">{new Date(event.starttime).getDate()}</h1>
               <h1 className="text-[12px] font-medium">{event.month}</h1>
             </div>
             <div className="px-[30px] py-[12px] flex-1 flex items-center">
