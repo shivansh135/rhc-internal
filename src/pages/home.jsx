@@ -23,7 +23,7 @@ const Home = () => {
   const [accessToken, setAccessToken] = useState(null);
   const [calendarEvents, setCalendarEvents] = useState([]);
   const [plannerTasks, setPlannerTasks] = useState([]);
-
+  console.log(accounts)
   useEffect(() => {
     const acquireToken = async () => {
       if (accounts.length > 0) {
