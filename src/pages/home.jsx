@@ -124,12 +124,12 @@ const Home = () => {
             <Banner />
           </div>
 
-          <div className="flex gap-[60px] mt-[25px]">
+          <div className="flex gap-[30px] mt-[25px]">
             <Calender events={calendarEvents} />
             <Planner tasks={plannerTasks} />
           </div>
 
-          <div className="mt-[30px]">
+          <div className="mt-[30px] w-full">
             <Announcement />
           </div>
 
@@ -143,8 +143,8 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="shadow-md w-[33vw]">
-          <div className="pb-[30px] px-[30px]">
+        <div className="shadow-md w-[33vw] rounded-[8px]  bg-white">
+          <div className="py-[24px] px-[30px]">
             <QuickLinks />
           </div>
           <hr />
