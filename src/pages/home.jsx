@@ -49,21 +49,20 @@ const Home = () => {
 
     const fetchCalendarEvents = async (token) => {
       try {
-        let calendar = await fetch("https://graph.microsoft.com/v1.0/me/calendar/events", {
+        // Get the current date in ISO 8601 format
+        const now = new Date().toISOString();
+    
+        // Fetch events starting from today or later
+        let calendar = await fetch(`https://graph.microsoft.com/v1.0/me/calendar/events?$filter=start/dateTime ge '${now}'`, {
           headers: { Authorization: "Bearer " + token },
         });
+    
         let cal_json = await calendar.json();
         console.log('org_cal', cal_json);
     
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const now = new Date();
     
-        let cal_filtered_json = cal_json.value.filter((obj) => {
-          let eventStart = new Date(obj.start.dateTime);
-          return eventStart >= now;
-        });
-    
-        let cal_eventsjson = cal_filtered_json.map((events) => ({
+        let cal_eventsjson = cal_json.value.map((events) => ({
           name: events.subject,
           month: new Date(events.start.dateTime).toLocaleString("default", { month: "short" }),
           day: new Date(events.start.dateTime).getDate(),
@@ -83,6 +82,7 @@ const Home = () => {
         console.error("Error fetching calendar events:", error);
       }
     };
+    
     
 
     const fetchPlannerTasks = async (token) => {
