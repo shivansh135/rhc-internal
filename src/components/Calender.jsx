@@ -58,7 +58,7 @@ const Calendar = ({ events }) => {
   // const weekEvents = events.filter(event => new Date(event.starttime).getDate() !== today);
   const todayEvents = events.filter(event => {
     const eventDate = new Date(event.day);
-    return eventDate === todayDay;
+    return event.day === todayDay;
 });
   const weekEvents = events.filter(event => {
     const eventDate = new Date(event.day);
