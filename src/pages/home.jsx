@@ -28,7 +28,7 @@ const Home = () => {
     const acquireToken = async () => {
       if (accounts.length > 0) {
         const request = {
-          ...loginRequest,
+          scopes: loginRequest.scopes,
           account: accounts[0],
         };
 
@@ -47,60 +47,61 @@ const Home = () => {
       }
     };
 
-    const fetchCalendarEvents = async (token) => {
-      try {
-        let calendar = await fetch("https://graph.microsoft.com/v1.0/me/calendar/events", {
-          headers: { Authorization: "Bearer " + token },
-        });
-        let cal_json = await calendar.json();
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        let cal_filtered_json = cal_json.value.filter((obj) => {
-          let startdate = new Date(obj.start.dateTime).getDate();
-          let todaysdate = new Date().getDate();
-          return startdate >= todaysdate;
-        });
-        let cal_eventsjson = cal_filtered_json.map((events) => ({
-          name: events.subject,
-          month: new Date(events.start.dateTime).toLocaleString("default", { month: "short" }),
-          day: new Date(events.start.dateTime).getDate(),
-          starttime: new Date(events.start.dateTime).toLocaleString("default", {
-            timeStyle: "short",
-            timeZone: tz,
-          }),
-          endtime: new Date(events.end.dateTime).toLocaleString("default", {
-            timeStyle: "short",
-            timeZone: tz,
-          }),
-        }));
-        setCalendarEvents(cal_eventsjson);
-      } catch (error) {
-        console.error("Error fetching calendar events:", error);
-      }
-    };
-
-    const fetchPlannerTasks = async (token) => {
-      try {
-        let tasks_planner = await fetch("https://graph.microsoft.com/v1.0/me/planner/tasks/", {
-          headers: { Authorization: "Bearer " + token },
-        });
-        let tasks_json = await tasks_planner.json();
-        let tasks_filter_json = tasks_json.value.filter((obj) => !obj.completedBy);
-        let tasks_assigned_json = tasks_filter_json.map((tasks) => ({
-          title: tasks.title,
-          id: tasks.id,
-          url: `https://tasks.office.com/arhc.com.sa/Home/Task/${tasks.id}`,
-          dueDate: new Date(tasks.dueDateTime).getFullYear() !== 1970
-            ? `${new Date(tasks.dueDateTime).getDate()}/${new Date(tasks.dueDateTime).getMonth() + 1}/${new Date(tasks.dueDateTime).getFullYear()}`
-            : "No Due Date",
-        }));
-        setPlannerTasks(tasks_assigned_json);
-      } catch (error) {
-        console.error("Error fetching planner tasks:", error);
-      }
-    };
-
     acquireToken();
-  }, [instance, accounts]);
+  }, [accounts, instance]);
+
+
+  const fetchCalendarEvents = async (token) => {
+    try {
+      let calendar = await fetch("https://graph.microsoft.com/v1.0/me/calendar/events", {
+        headers: { Authorization: "Bearer " + token },
+      });
+      let cal_json = await calendar.json();
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      let cal_filtered_json = cal_json.value.filter((obj) => {
+        let startdate = new Date(obj.start.dateTime).getDate();
+        let todaysdate = new Date().getDate();
+        return startdate >= todaysdate;
+      });
+      let cal_eventsjson = cal_filtered_json.map((events) => ({
+        name: events.subject,
+        month: new Date(events.start.dateTime).toLocaleString("default", { month: "short" }),
+        day: new Date(events.start.dateTime).getDate(),
+        starttime: new Date(events.start.dateTime).toLocaleString("default", {
+          timeStyle: "short",
+          timeZone: tz,
+        }),
+        endtime: new Date(events.end.dateTime).toLocaleString("default", {
+          timeStyle: "short",
+          timeZone: tz,
+        }),
+      }));
+      setCalendarEvents(cal_eventsjson);
+    } catch (error) {
+      console.error("Error fetching calendar events:", error);
+    }
+  };
+
+  const fetchPlannerTasks = async (token) => {
+    try {
+      let tasks_planner = await fetch("https://graph.microsoft.com/v1.0/me/planner/tasks/", {
+        headers: { Authorization: "Bearer " + token },
+      });
+      let tasks_json = await tasks_planner.json();
+      let tasks_filter_json = tasks_json.value.filter((obj) => !obj.completedBy);
+      let tasks_assigned_json = tasks_filter_json.map((tasks) => ({
+        title: tasks.title,
+        id: tasks.id,
+        url: `https://tasks.office.com/arhc.com.sa/Home/Task/${tasks.id}`,
+        dueDate: new Date(tasks.dueDateTime).getFullYear() !== 1970
+          ? `${new Date(tasks.dueDateTime).getDate()}/${new Date(tasks.dueDateTime).getMonth() + 1}/${new Date(tasks.dueDateTime).getFullYear()}`
+          : "No Due Date",
+      }));
+      setPlannerTasks(tasks_assigned_json);
+    } catch (error) {
+      console.error("Error fetching planner tasks:", error);
+    }
+  };
 
   return (
     <div className="px-[30px] bg-[#F4F8FB] w-full">
