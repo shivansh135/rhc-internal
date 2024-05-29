@@ -1,3 +1,5 @@
+import { LogLevel } from '@azure/msal-browser';
+
 export const msalConfig = {
   auth: {
     clientId: "087d5427-2255-48c9-869e-9428f0a88b20",
@@ -5,7 +7,7 @@ export const msalConfig = {
     redirectUri: "https://rhc-internal.vercel.app/",
   },
   cache: {
-    cacheLocation: "localStorage", 
+    cacheLocation: "localStorage",
     storeAuthStateInCookie: true,
   },
   system: {
@@ -15,22 +17,22 @@ export const msalConfig = {
           return;
         }
         switch (level) {
-          case msal.LogLevel.Error:
+          case LogLevel.Error:
             console.error(message);
             break;
-          case msal.LogLevel.Info:
+          case LogLevel.Info:
             console.info(message);
             break;
-          case msal.LogLevel.Verbose:
+          case LogLevel.Verbose:
             console.debug(message);
             break;
-          case msal.LogLevel.Warning:
+          case LogLevel.Warning:
             console.warn(message);
             break;
         }
       },
       piiLoggingEnabled: false,
-      logLevel: msal.LogLevel.Verbose,
+      logLevel: LogLevel.Verbose,
     },
   },
 };
