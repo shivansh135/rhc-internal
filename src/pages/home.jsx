@@ -33,9 +33,11 @@ const Home = () => {
         };
 
         try {
-          setAccessToken(acquireToken);
-          fetchCalendarEvents(acquireToken);
-          fetchPlannerTasks(acquireToken);
+          const response = await instance.acquireTokenSilent(request);
+          console.log(response)
+          setAccessToken(response.accessToken);
+          fetchCalendarEvents(response.accessToken);
+          fetchPlannerTasks(response.accessToken);
         } catch (error) {
           if (error instanceof InteractionRequiredAuthError) {
             instance.acquireTokenRedirect(request);
