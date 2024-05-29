@@ -73,7 +73,7 @@ const Home = () => {
           }),
         }));
         setCalendarEvents(cal_eventsjson);
-        console.log(cal_eventsjson)
+        console.log('cal_eventsjson',cal_eventsjson)
       } catch (error) {
         console.error("Error fetching calendar events:", error);
       }
@@ -95,7 +95,7 @@ const Home = () => {
             : "No Due Date",
         }));
         setPlannerTasks(tasks_assigned_json);
-        console.log(tasks_assigned_json)
+        console.log('tasks_assigned_json',tasks_assigned_json)
       } catch (error) {
         console.error("Error fetching planner tasks:", error);
       }
