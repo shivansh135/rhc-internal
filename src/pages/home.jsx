@@ -54,7 +54,7 @@ const Home = () => {
     
         // Fetch events starting from today or later
         let calendar = await fetch(`https://graph.microsoft.com/v1.0/me/calendar/events?$filter=start/dateTime ge '${now}'`, {
-          headers: { Authorization: "Bearer " + token, Prefer:'outlook.timezone = "Indian Standard Time"' },
+          headers: { Authorization: "Bearer " + token, Prefer:'outlook.timezone="Indian Standard Time"' },
 
         });
     
