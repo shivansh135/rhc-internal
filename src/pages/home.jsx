@@ -6,6 +6,7 @@ import EmployeeDirectory from '../components/EmployeeDirectory';
 import EventName from '../components/EventName';
 import Gallery from '../components/Gallery';
 import KnowledgeBase from '../components/KnowledgeBase';
+import Nav from '../components/Nav';
 import NewEmployee from '../components/NewEmployee';
 import News from '../components/News';
 import Planner from '../components/Planner';
@@ -113,7 +114,9 @@ const Home = () => {
   }, [instance, accounts]);
 
   return (
-    <div className="px-[30px] bg-[#F4F8FB] w-full">
+    <div className="overflow-hidden w-full">
+    <Nav/>
+    <div className="px-[30px] bg-[#F4F8FB] w-full py-[30px]">
 
       <div className="flex gap-[30px]">
         <div className="w-[66vw]">
@@ -167,6 +170,7 @@ const Home = () => {
         <Gallery />
       </div>
     </div>
+  </div>
   );
 };
 
