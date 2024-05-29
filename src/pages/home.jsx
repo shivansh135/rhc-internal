@@ -15,7 +15,7 @@ import UpcomingEvents from '../components/UpcomingEvents';
 import { useMsal } from '@azure/msal-react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { loginRequest } from '../authConfig';
+import { loginRequest, tokenScopes } from '../authConfig';
 import { InteractionRequiredAuthError } from '@azure/msal-browser';
 
 const Home = () => {
@@ -28,7 +28,7 @@ const Home = () => {
     const acquireToken = async () => {
       if (accounts.length > 0) {
         const request = {
-          ...loginRequest,
+          ...tokenScopes,
           account: accounts[0],
         };
 
