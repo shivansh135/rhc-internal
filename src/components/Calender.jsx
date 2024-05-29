@@ -9,7 +9,7 @@ const Calendar = ({ events }) => {
 
   const today = new Date();
   const todayDate = today.setHours(0, 0, 0, 0);
-  console.log('Today:', todayDate.toDateString());
+  console.log('Today:', todayDate);
 
   const getCurrentWeekRange = () => {
     const firstDayOfWeek = new Date(today);
@@ -64,8 +64,8 @@ const Calendar = ({ events }) => {
     return eventDate !== todayDate;
   });
 
-  console.log('Today Events:', todayEvents);
-  console.log('Week Events:', weekEvents);
+  console.log('Today Events:', todayEvents.map(event => new Date(event.starttime) ));
+  console.log('Week Events:', weekEvents.map(event => new Date(event.starttime) ));
 
 
   return (
