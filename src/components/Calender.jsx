@@ -65,8 +65,8 @@ const Calendar = ({ events }) => {
     return eventDate !== todayDay;
   });
 
-  console.log('Today Events:', todayEvents.map(event => new Date(event.starttime) ));
-  console.log('Week Events:', weekEvents.map(event => new Date(event.starttime) ));
+  console.log('Today Events:', todayEvents);
+  console.log('Week Events:', weekEvents);
 
 
   return (
