@@ -8,8 +8,9 @@ const Calendar = ({ events }) => {
   };
 
   const today = new Date();
-  const todayDate = today.setHours(0, 0, 0, 0);
-  console.log('Today:', todayDate);
+  const todayYear = today.getFullYear();
+  const todayMonth = today.getMonth();
+  const todayDay = today.getDate();
 
   const getCurrentWeekRange = () => {
     const firstDayOfWeek = new Date(today);
@@ -56,12 +57,12 @@ const Calendar = ({ events }) => {
   // const todayEvents = events.filter(event => new Date(event.starttime).getDate() === today);
   // const weekEvents = events.filter(event => new Date(event.starttime).getDate() !== today);
   const todayEvents = events.filter(event => {
-    const eventDate = new Date(event.starttime).setHours(0, 0, 0, 0);
-    return eventDate === todayDate;
+    const eventDate = new Date(event.day);
+    return eventDate === todayDay;
 });
   const weekEvents = events.filter(event => {
-    const eventDate = new Date(event.starttime).setHours(0, 0, 0, 0);
-    return eventDate !== todayDate;
+    const eventDate = new Date(event.day);
+    return eventDate !== todayDay;
   });
 
   console.log('Today Events:', todayEvents.map(event => new Date(event.starttime) ));
