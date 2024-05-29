@@ -49,19 +49,20 @@ const Home = () => {
 
     const fetchCalendarEvents = async (token) => {
       try {
-        // Get the current date in ISO 8601 format
-        const now = new Date().toISOString();
+        // Get the current date and set time to midnight to include all of today
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
+        const isoDate = now.toISOString();
     
         // Fetch events starting from today or later
-        let calendar = await fetch(`https://graph.microsoft.com/v1.0/me/calendar/events?$filter=start/dateTime ge '${now}'`, {
-          headers: { Authorization: "Bearer " + token, Prefer:'outlook.timezone="Indian Standard Time"' },
-
+        let calendar = await fetch(`https://graph.microsoft.com/v1.0/me/calendar/events?$filter=start/dateTime ge '${isoDate}'`, {
+          headers: { Authorization: "Bearer " + token, Prefer: 'outlook.timezone="Asia/Kolkata"' },
         });
     
         let cal_json = await calendar.json();
         console.log('org_cal', cal_json);
     
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const tz = "Asia/Kolkata"; // Using the correct IANA time zone identifier
     
         let cal_eventsjson = cal_json.value.map((events) => ({
           name: events.subject,
