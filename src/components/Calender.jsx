@@ -16,11 +16,7 @@ const Calendar = ({ events }) => {
 
   const isToday = (date) => {
     const eventDate = new Date(date);
-    return (
-      eventDate.getDate() === todayDate &&
-      eventDate.getMonth() === today.getMonth() &&
-      eventDate.getFullYear() === today.getFullYear()
-    );
+    return eventDate.getDate() === todayDate;
   };
 
   const isThisWeek = (date) => {
