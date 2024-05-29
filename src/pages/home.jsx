@@ -58,7 +58,7 @@ const Home = () => {
         let cal_filtered_json = cal_json.value.filter((obj) => {
           let startdate = new Date(obj.start.dateTime).getDate();
           let todaysdate = new Date().getDate();
-          return startdate >= todaysdate;
+          return (startdate >= todaysdate || true);
         });
         let cal_eventsjson = cal_filtered_json.map((events) => ({
           name: events.subject,
