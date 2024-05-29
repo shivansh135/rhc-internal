@@ -28,7 +28,7 @@ const Home = () => {
     const acquireToken = async () => {
       if (accounts.length > 0) {
         const request = {
-          ...tokenScopes,
+          ...loginRequest,
           account: accounts[0],
         };
 
