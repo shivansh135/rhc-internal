@@ -9,6 +9,7 @@ const msalInstance = new PublicClientApplication(msalConfig);
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = useIsAuthenticated();
+  console.log(isAuthenticated);
 
   if (!isAuthenticated) {
     return (
