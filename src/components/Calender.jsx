@@ -1,22 +1,19 @@
 import React from 'react';
 
 const Calendar = ({ events }) => {
-  const today = new Date();
-  const todayDate = today.getDate();
-
-  const getCurrentWeekRange = () => {
-    const firstDayOfWeek = new Date(today);
-    firstDayOfWeek.setDate(today.getDate() - today.getDay());
-    const lastDayOfWeek = new Date(firstDayOfWeek);
-    lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
-    return [firstDayOfWeek, lastDayOfWeek];
+  const normalizeDate = (date) => {
+    const normalized = new Date(date);
+    normalized.setHours(0, 0, 0, 0);
+    return normalized;
   };
 
-  const [currentWeekStart, currentWeekEnd] = getCurrentWeekRange();
+  const today = new Date();
+  const todayDate = normalizeDate(today).getTime();
+
 
   const isToday = (date) => {
-    const eventDate = new Date(date);
-    return eventDate.getDate() === todayDate;
+    const eventDate = normalizeDate(new Date(date)).getTime();
+    return eventDate === todayDate;
   };
 
   const isThisWeek = (date) => {
