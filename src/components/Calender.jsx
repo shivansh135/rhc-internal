@@ -57,6 +57,9 @@ const Calendar = ({ events }) => {
   const todayEvents = events.filter(event => isToday(event.starttime));
   const weekEvents = events.filter(event => isThisWeek(event.starttime));
 
+  console.log('Today Events:', todayEvents);
+  console.log('Week Events:', weekEvents);
+
 
   return (
     <div className="w-full bg-white rounded-lg overflow-hidden shadow-md">
