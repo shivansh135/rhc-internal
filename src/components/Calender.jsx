@@ -62,7 +62,7 @@ const Calendar = ({ events }) => {
 });
   const weekEvents = events.filter(event => {
     const eventDate = new Date(event.day);
-    return eventDate !== todayDay;
+    return event.day !== todayDay;
   });
 
   console.log('Today Events:', todayEvents);
