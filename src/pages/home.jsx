@@ -73,6 +73,7 @@ const Home = () => {
           }),
         }));
         setCalendarEvents(cal_eventsjson);
+        console.log(cal_eventsjson)
       } catch (error) {
         console.error("Error fetching calendar events:", error);
       }
@@ -94,6 +95,7 @@ const Home = () => {
             : "No Due Date",
         }));
         setPlannerTasks(tasks_assigned_json);
+        console.log(tasks_assigned_json)
       } catch (error) {
         console.error("Error fetching planner tasks:", error);
       }
@@ -104,17 +106,6 @@ const Home = () => {
 
   return (
     <div className="px-[30px] bg-[#F4F8FB] w-full">
-      <div>
-        <h1>Home</h1>
-        {accessToken ? (
-          <div>
-            <h2>Access Token:</h2>
-            <p>{accessToken}</p>
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
 
       <div className="flex gap-[30px]">
         <div className="w-[66vw]">
