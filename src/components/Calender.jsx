@@ -1,7 +1,33 @@
 import React from 'react';
 
 const Calendar = ({ events }) => {
-  const today = new Date().getDate();
+  const today = new Date();
+  const todayDate = today.getDate();
+
+  const getCurrentWeekRange = () => {
+    const firstDayOfWeek = new Date(today);
+    firstDayOfWeek.setDate(today.getDate() - today.getDay());
+    const lastDayOfWeek = new Date(firstDayOfWeek);
+    lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
+    return [firstDayOfWeek, lastDayOfWeek];
+  };
+
+  const [currentWeekStart, currentWeekEnd] = getCurrentWeekRange();
+
+  const isToday = (date) => {
+    const eventDate = new Date(date);
+    return (
+      eventDate.getDate() === todayDate &&
+      eventDate.getMonth() === today.getMonth() &&
+      eventDate.getFullYear() === today.getFullYear()
+    );
+  };
+
+  const isThisWeek = (date) => {
+    const eventDate = new Date(date);
+    return eventDate >= currentWeekStart && eventDate <= currentWeekEnd && !isToday(date);
+  };
+
 
   const renderEvents = (events, title) => (
     <div className="px-[30px] my-[20px]">
@@ -27,8 +53,11 @@ const Calendar = ({ events }) => {
     </div>
   );
 
-  const todayEvents = events.filter(event => new Date(event.starttime).getDate() === today);
-  const weekEvents = events.filter(event => new Date(event.starttime).getDate() !== today);
+  // const todayEvents = events.filter(event => new Date(event.starttime).getDate() === today);
+  // const weekEvents = events.filter(event => new Date(event.starttime).getDate() !== today);
+  const todayEvents = events.filter(event => isToday(event.starttime));
+  const weekEvents = events.filter(event => isThisWeek(event.starttime));
+
 
   return (
     <div className="w-full bg-white rounded-lg overflow-hidden shadow-md">
