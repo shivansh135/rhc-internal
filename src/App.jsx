@@ -11,13 +11,13 @@ const PrivateRoute = ({ children }) => {
   const isAuthenticated = useIsAuthenticated();
   console.log(isAuthenticated);
 
-  // if (!isAuthenticated) {
-  //   return (
-  //     <MsalAuthenticationTemplate interactionType="redirect" authenticationRequest={loginRequest}>
-  //       {children}
-  //     </MsalAuthenticationTemplate>
-  //   );
-  // }
+  if (!isAuthenticated) {
+    return (
+      <MsalAuthenticationTemplate interactionType="redirect" authenticationRequest={loginRequest}>
+        {children}
+      </MsalAuthenticationTemplate>
+    );
+  }
 
   return children;
 };
