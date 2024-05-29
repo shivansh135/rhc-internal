@@ -53,13 +53,16 @@ const Home = () => {
           headers: { Authorization: "Bearer " + token },
         });
         let cal_json = await calendar.json();
-        console.log('org_cal',cal_json)
+        console.log('org_cal', cal_json);
+    
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const now = new Date();
+    
         let cal_filtered_json = cal_json.value.filter((obj) => {
-          let startdate = new Date(obj.start.dateTime).getDate();
-          let todaysdate = new Date().getDate();
-          return (startdate >= todaysdate || true);
+          let eventStart = new Date(obj.start.dateTime);
+          return eventStart >= now;
         });
+    
         let cal_eventsjson = cal_filtered_json.map((events) => ({
           name: events.subject,
           month: new Date(events.start.dateTime).toLocaleString("default", { month: "short" }),
@@ -73,12 +76,14 @@ const Home = () => {
             timeZone: tz,
           }),
         }));
+    
         setCalendarEvents(cal_eventsjson);
-        console.log('cal_eventsjson',cal_eventsjson)
+        console.log('cal_eventsjson', cal_eventsjson);
       } catch (error) {
         console.error("Error fetching calendar events:", error);
       }
     };
+    
 
     const fetchPlannerTasks = async (token) => {
       try {
