@@ -15,7 +15,7 @@ import UpcomingEvents from '../components/UpcomingEvents';
 import { useMsal } from '@azure/msal-react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { loginRequest, tokenScopes } from '../authConfig';
+import { loginRequest } from '../authConfig';
 import { InteractionRequiredAuthError } from '@azure/msal-browser';
 
 const Home = () => {
@@ -28,7 +28,7 @@ const Home = () => {
     const acquireToken = async () => {
       if (accounts.length > 0) {
         const request = {
-          ...tokenScopes,
+          ...loginRequest,
           account: accounts[0],
         };
 
@@ -53,6 +53,7 @@ const Home = () => {
           headers: { Authorization: "Bearer " + token },
         });
         let cal_json = await calendar.json();
+        console.log('org_cal',cal_json)
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
         let cal_filtered_json = cal_json.value.filter((obj) => {
           let startdate = new Date(obj.start.dateTime).getDate();
