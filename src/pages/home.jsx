@@ -15,7 +15,7 @@ import UpcomingEvents from '../components/UpcomingEvents';
 import { useMsal } from '@azure/msal-react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { loginRequest, tokenScopes } from '../authConfig';
+import { loginRequest } from '../authConfig';
 import { InteractionRequiredAuthError } from '@azure/msal-browser';
 
 const Home = () => {
@@ -33,10 +33,9 @@ const Home = () => {
         };
 
         try {
-          const response = await instance.acquireTokenSilent(request);
-          setAccessToken(response.accessToken);
-          fetchCalendarEvents(response.accessToken);
-          fetchPlannerTasks(response.accessToken);
+          setAccessToken(acquireToken);
+          fetchCalendarEvents(acquireToken);
+          fetchPlannerTasks(acquireToken);
         } catch (error) {
           if (error instanceof InteractionRequiredAuthError) {
             instance.acquireTokenRedirect(request);
