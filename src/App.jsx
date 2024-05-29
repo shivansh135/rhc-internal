@@ -7,20 +7,7 @@ import { msalConfig, loginRequest } from './authConfig';
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
-const PrivateRoute = ({ children }) => {
-  const isAuthenticated = useIsAuthenticated();
-  console.log(isAuthenticated);
 
-  if (!isAuthenticated) {
-    return (
-      <MsalAuthenticationTemplate interactionType="redirect" authenticationRequest={loginRequest}>
-        {children}
-      </MsalAuthenticationTemplate>
-    );
-  }
-
-  return children;
-};
 
 const App = () => {
   return (
@@ -30,9 +17,8 @@ const App = () => {
           <Route
             path="/"
             element={
-              <PrivateRoute>
+              
                 <Home />
-              </PrivateRoute>
             }
           />
           {/* Add other routes as needed */}
