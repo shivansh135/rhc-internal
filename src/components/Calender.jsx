@@ -8,7 +8,7 @@ const Calendar = ({ events }) => {
   };
 
   const today = new Date();
-  const todayDate = normalizeDate(today).getTime();
+  const todayDate = new Date().setHours(0, 0, 0, 0);
 
   const getCurrentWeekRange = () => {
     const firstDayOfWeek = new Date(today);
@@ -35,8 +35,8 @@ const Calendar = ({ events }) => {
         {events.map((event, index) => (
           <div key={index} className="flex items-stretch border-[1px] border-[#50917F] rounded-lg">
             <div className="px-[25px] border-r-[1px] border-r-[#50917F] flex flex-col justify-center flex-grow-0">
-              <h1 className="text-[24px] font-medium">{new Date(event.starttime).getDate()}</h1>
-              <h1 className="text-[12px] font-medium">{new Date(event.starttime).toLocaleString('default', { month: 'short' })}</h1>
+              <h1 className="text-[24px] font-medium">{event.day}</h1>
+              <h1 className="text-[12px] font-medium">{event.month}</h1>
             </div>
             <div className="px-[30px] py-[12px] flex-1 flex items-center">
               <div>
@@ -53,9 +53,12 @@ const Calendar = ({ events }) => {
   );
 
   // const todayEvents = events.filter(event => new Date(event.starttime).getDate() === today);
-  const weekEvents = events.filter(event => new Date(event.starttime).getDate() !== today);
+  // const weekEvents = events.filter(event => new Date(event.starttime).getDate() !== today);
   const todayEvents = events.filter(event => isToday(event.starttime));
-  // const weekEvents = events.filter(event => isThisWeek(event.starttime));
+  const weekEvents = events.filter(event => {
+    const eventDate = new Date(event.starttime).setHours(0, 0, 0, 0);
+    return eventDate !== todayDate;
+  });
 
   console.log('Today Events:', todayEvents);
   console.log('Week Events:', weekEvents);
