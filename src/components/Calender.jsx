@@ -55,12 +55,18 @@ const Calendar = ({ events }) => {
   // const todayEvents = events.filter(event => new Date(event.starttime).getDate() === today);
   // const weekEvents = events.filter(event => new Date(event.starttime).getDate() !== today);
   const todayEvents = events.filter(event => {
-    const eventDate = new Date(event.starttime).toISOString().slice(0, 10);
-    return eventDate === todayDate;
+    const eventDate = new Date(event.starttime);
+    if (isNaN(eventDate.getTime())) {
+      return false; 
+   }
+   return eventDate.toISOString().slice(0, 10) === todayDate;
 });
   const weekEvents = events.filter(event => {
-    const eventDate = new Date(event.starttime).toISOString().slice(0, 10);
-    return eventDate !== todayDate;
+    const eventDate = new Date(event.starttime);
+    if (isNaN(eventDate.getTime())) {
+      return false; // Skip invalid dates
+  }
+   return eventDate.toISOString().slice(0, 10) !== todayDate;
   });
 
   console.log('Today Events:', todayEvents);
