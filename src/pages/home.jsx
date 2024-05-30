@@ -196,7 +196,7 @@ const Home = () => {
           </div>
 
           <div className="mt-[30px] w-full">
-            <Announcement announcement={announcements} />
+            <Announcement announcements={announcements} />
           </div>
 
           <div className="flex gap-[30px] justify-between mt-[25px]">

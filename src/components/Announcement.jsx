@@ -1,5 +1,5 @@
 
-const Announcement = ({announcement}) => {
+const Announcement = ({announcements}) => {
 
 
   if (!announcement ) {
