@@ -2,7 +2,7 @@
 const Banner = () => {
   return (
     <div className="w-full h-full relative">
-      <img className="w-full h-full object-cover scale-x-[-1]" src="https://riyadhholding.sharepoint.com/:i:/s/Shamil/EW66YPNLAQtEptnLemoV5KUBTyT02xw40MgMKah48mHZHQ?e=MF3WBg" alt="" />
+      <img className="w-full h-full object-cover scale-x-[-1]" src="https://riyadhholding.sharepoint.com/sites/Shamil/Assets/image.png" alt="" />
       <div className="absolute bottom-[-140px] right-0 w-[20vw]">
         <img src="/images/HeroImgPattern.png" alt="" />
       </div>
