@@ -41,7 +41,7 @@ const Home = () => {
           fetchPlannerTasks(response.accessToken);
           fetchAnnouncements(response.accessToken);
 
-          const response2 = await fetch('https://graph.microsoft.com/v1.0/sites/Shamil/',{headers:{Authorization:"Bearer"+response.accessToken}});
+          const response2 = await fetch('https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com:/sites/Shamil/',{headers:{Authorization:"Bearer"+response.accessToken}});
           const resJson = await response2.json()
           console.log(resJson,resJson.id);
           fetchAnnouncements(response.accessToken,resJson.id)
@@ -119,7 +119,7 @@ const Home = () => {
 
     const fetchAnnouncements = async (token,siteId) => {
       try {
-        const response = await fetch(`https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com:/sites/${siteId}/Lists/8123ed29-3809-4573-bd24-70b60e752aa1`, {
+        const response = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/Lists/8123ed29-3809-4573-bd24-70b60e752aa1`, {
           headers: { Authorization: "Bearer" + token },
         });
         const data = await response.json();
