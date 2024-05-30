@@ -41,7 +41,8 @@ const Home = () => {
           fetchPlannerTasks(response.accessToken);
           fetchAnnouncements(response.accessToken);
 
-          const response2 = await fetch('https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com:/sites/Shamil/',{headers:{Authorization:"Bearer"+response.accessToken}})
+          const response2 = await fetch('https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com:/sites/Shamil/',{headers:{Authorization:"Bearer"+response.accessToken}});
+          console.log(response2,response2.id);
           fetchAnnouncements(response.accessToken,response2.id)
         } catch (error) {
           if (error instanceof InteractionRequiredAuthError) {
