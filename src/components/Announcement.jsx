@@ -2,7 +2,7 @@
 const Announcement = ({announcement}) => {
 
 
-  if (!announcement || !announcement.value || !announcement.value.fields || !announcement.value.fields.Title || !announcement.value.fields.preview_en) {
+  if (!announcement || !announcement.value[0] || !announcement.value[0].fields || !announcement.value[0].fields.Title || !announcement.value[0].fields.preview_en) {
     return <div>No announcement available.</div>; 
   }
 
