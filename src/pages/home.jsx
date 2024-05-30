@@ -40,6 +40,10 @@ const Home = () => {
           fetchCalendarEvents(response.accessToken);
           fetchPlannerTasks(response.accessToken);
           fetchAnnouncements(response.accessToken);
+          const siteUrl = 'https://riyadhholding.sharepoint.com/sites/Shamil';
+  const listName = 'announcements';// Replace with the access token obtained from MSAL
+  
+  fetchSiteAndListDetails(siteUrl, listName, response.accessToken);
         } catch (error) {
           if (error instanceof InteractionRequiredAuthError) {
             instance.acquireTokenRedirect(request);
@@ -130,7 +134,7 @@ const Home = () => {
       }
     };
 
-    const fetchSiteAndListDetails = async (siteUrl, listName) => {
+    const fetchSiteAndListDetails = async (siteUrl, listName,token) => {
       try {
           // Fetch Site ID
           const siteResponse = await fetch(`https://graph.microsoft.com/v1.0/sites?search=${encodeURIComponent(siteUrl)}`, {
@@ -156,13 +160,6 @@ const Home = () => {
           console.error('Error fetching site and list details:', error);
       }
   };
-  
-  // Example usage:
-  const siteUrl = 'https://riyadhholding.sharepoint.com/sites/Shamil';
-  const listName = 'announcements';// Replace with the access token obtained from MSAL
-  
-  fetchSiteAndListDetails(siteUrl, listName);
-  
 
 
     acquireToken();
