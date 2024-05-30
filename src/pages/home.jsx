@@ -114,7 +114,7 @@ const Home = () => {
 
     const fetchAnnouncements = async (token) => {
       try {
-        const response = await fetch('https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com:/sites/Shamil/Lists/employeedetails', {
+        const response = await fetch('https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com:/Shamil/Lists/announcements', {
           headers: { Authorization: "Bearer" + token },
         });
         const data = await response.json();
@@ -129,6 +129,41 @@ const Home = () => {
         console.error('Error fetching announcements:', error);
       }
     };
+
+    const fetchSiteAndListDetails = async (siteUrl, listName, token) => {
+      try {
+          // Fetch Site ID
+          const siteResponse = await fetch(`https://graph.microsoft.com/v1.0/sites?search=${encodeURIComponent(siteUrl)}`, {
+              headers: { Authorization: `Bearer ${token}` },
+          });
+          const siteData = await siteResponse.json();
+          const siteId = siteData.value[0].id;
+          console.log('Site ID:', siteId);
+  
+          // Fetch List ID
+          const listResponse = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/lists`, {
+              headers: { Authorization: `Bearer ${token}` },
+          });
+          const listData = await listResponse.json();
+          const list = listData.value.find(list => list.name === listName);
+          if (list) {
+              const listId = list.id;
+              console.log('List ID:', listId);
+          } else {
+              console.error('List not found:', listName);
+          }
+      } catch (error) {
+          console.error('Error fetching site and list details:', error);
+      }
+  };
+  
+  // Example usage:
+  const siteUrl = 'https://riyadhholding.sharepoint.com/sites/Shamil';
+  const listName = 'announcements';
+  const token = 'YOUR_ACCESS_TOKEN'; // Replace with the access token obtained from MSAL
+  
+  fetchSiteAndListDetails(siteUrl, listName, token);
+  
 
 
     acquireToken();
