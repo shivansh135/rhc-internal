@@ -1,5 +1,6 @@
 
 const News = ({data}) => {
+  console.log(data);
   return (
     <div className="w-[480px] min-h-[424px] bg-white rounded-lg overflow-hidden shadow-md">
       <div className="bg-[#C2AB80] w-full min-h-[64px] gap-[10px] flex justify-between items-center flex-wrap px-[30px] py-[20px] text-[white]  mb-[30px]">
