@@ -177,6 +177,9 @@ const Home = () => {
   }, [instance, accounts]);
 
 
+  if(!news.length || !employeeDirectory.length || !calendarEvents.length || !plannerTasks.length || !announcements.length){
+    return <div>Loading...</div>
+  }
 
 
   return (
