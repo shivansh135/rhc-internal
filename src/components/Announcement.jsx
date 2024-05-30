@@ -6,7 +6,7 @@ const Announcement = ({announcement}) => {
     return <div>No announcement available.</div>; 
   }
 
-  const { Title, preview_en } = announcement.value[0].fields;
+  const { Title, preview_en } = announcements.value[0].fields;
   console.log('Announcement-Tile:', Title);
   console.log('Announcement-Preview:', preview_en);
 
