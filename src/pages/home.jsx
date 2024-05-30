@@ -42,8 +42,9 @@ const Home = () => {
           fetchAnnouncements(response.accessToken);
 
           const response2 = await fetch('https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com:/sites/Shamil/',{headers:{Authorization:"Bearer"+response.accessToken}});
-          console.log(response2,response2.id);
-          fetchAnnouncements(response.accessToken,response2.id)
+          const resJson = await response2.json()
+          console.log(resJson,resJson.id);
+          fetchAnnouncements(response.accessToken,resJson.id)
         } catch (error) {
           if (error instanceof InteractionRequiredAuthError) {
             instance.acquireTokenRedirect(request);
