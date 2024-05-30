@@ -205,7 +205,7 @@ const Home = () => {
           </div>
 
           <div className="mt-[30px]">
-            <EmployeeDirectory />
+            <EmployeeDirectory employees={employeeDirectory} />
           </div>
         </div>
 
@@ -219,7 +219,7 @@ const Home = () => {
           </div>
           <hr />
           <div className="px-[30px] mt-[30px]">
-            <UpcomingEvents />
+            <UpcomingEvents events={upcomingEvents} />
           </div>
           <hr />
           <div className="px-[30px] mt-[30px]">
