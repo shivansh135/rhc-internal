@@ -178,6 +178,7 @@ const Home = () => {
 
 
   if(!news.length || !employeeDirectory.length || !calendarEvents.length || !plannerTasks.length || !announcements.length){
+    console.log(news.length,employeeDirectory.length,calendarEvents.length,plannerTasks.length,announcements.length);
     return <div>Loading...</div>
   }
 
