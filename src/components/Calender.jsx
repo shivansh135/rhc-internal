@@ -45,7 +45,7 @@ const Calendar = ({ events }) => {
 
 
   return (
-    <div className="w-full bg-white rounded-lg overflow-hidden shadow-md">
+    {events && <div className="w-full bg-white rounded-lg overflow-hidden shadow-md">
       <div className="bg-[#3B729C] w-full flex justify-between items-center px-[30px] py-[20px] text-[white]">
         <h1 className="text-[20px]">Calendar</h1>
         <a className="text-[14px] px-[10px] py-[5px] border-[1px] border-white rounded-md" href="">
@@ -57,7 +57,7 @@ const Calendar = ({ events }) => {
         <hr />
         {renderEvents(weekEvents, 'This Week')}
       </div>
-    </div>
+    </div>}
   );
 };
 

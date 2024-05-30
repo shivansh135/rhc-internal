@@ -4,7 +4,7 @@ const NewEmployee = ({ newEmployee }) => {
     return <div>No new employee information available.</div>;
   }
   return (
-    <div className="flex flex-col items-center gap-[30px] bg-[#50917F] px-[20px] py-[30px] rounded-[8px] overflow-hidden">
+    {newEmployee &&<div className="flex flex-col items-center gap-[30px] bg-[#50917F] px-[20px] py-[30px] rounded-[8px] overflow-hidden">
         <h1 className="text-center text-[20px] text-white font-light h-[28.98px] ">New Employee</h1>
 
         <div className="h-[145px] w-[124px] bg-slate-300 rounded-[8px] overflow-hidden">
@@ -24,7 +24,7 @@ const NewEmployee = ({ newEmployee }) => {
 
         <p className="text-center self-stretch text-[14px] font-light min-h-[41px] text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
       
-    </div>
+    </div>}
   )
 }
 
