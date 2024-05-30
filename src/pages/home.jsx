@@ -41,7 +41,7 @@ const Home = () => {
           fetchPlannerTasks(response.accessToken);
           fetchAnnouncements(response.accessToken);
 
-          const response2 = await fetch('https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com:/sites/Shamil/',{headers:{Authorization:"Bearer"+response.accessToken}});
+          const response2 = await fetch('https://graph.microsoft.com/v1.0/sites/Shamil/',{headers:{Authorization:"Bearer"+response.accessToken}});
           const resJson = await response2.json()
           console.log(resJson,resJson.id);
           fetchAnnouncements(response.accessToken,resJson.id)
