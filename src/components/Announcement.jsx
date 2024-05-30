@@ -2,22 +2,22 @@ import PropTypes from 'prop-types';
 
 const Announcement = ({announcement}) => {
 
-  // Announcement.propTypes = {
-  //   announcement: PropTypes.shape({
-  //     fields: PropTypes.shape({
-  //       Title: PropTypes.string.isRequired,
-  //       preview_en: PropTypes.string.isRequired,
-  //     }).isRequired,
-  //   }),
-  // };
+  Announcement.propTypes = {
+    announcement: PropTypes.shape({
+      fields: PropTypes.shape({
+        Title: PropTypes.string.isRequired,
+        preview_en: PropTypes.string.isRequired,
+      }).isRequired,
+    }),
+  };
 
-  // if (!announcement) {
-  //   return <div>No announcement available.</div>; 
-  // }
+  if (!announcement) {
+    return <div>No announcement available.</div>; 
+  }
 
-  // const { Title, preview_en } = announcement.fields;
-  // console.log('Announcement-Tile:', Title);
-  // console.log('Announcement-Preview:', preview_en);
+  const { Title, preview_en } = announcement.value.fields;
+  console.log('Announcement-Tile:', Title);
+  console.log('Announcement-Preview:', preview_en);
 
   return (
     <div className="w-full justify-center bg-[#50917F] p-[20px] flex flex-wrap rounded-lg gap-[30px] items-center">
