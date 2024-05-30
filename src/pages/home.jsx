@@ -174,7 +174,7 @@ const Home = () => {
 
 
     acquireToken();
-  }, [instance, accounts]);
+  }, [instance, accounts,announcements,calendarEvents,employeeDirectory,news,plannerTasks]);
 
 
   if(!news.length || !employeeDirectory.length || !calendarEvents.length  || !announcements.length){
