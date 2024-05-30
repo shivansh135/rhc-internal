@@ -2,7 +2,7 @@
 const Announcement = ({announcements}) => {
 
 
-  if (!announcements ) {
+  if (!announcements || !announcements.value || announcements.value.length === 0 ) {
     return <div>No announcement available.</div>; 
   }
 
