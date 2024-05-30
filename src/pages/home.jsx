@@ -113,6 +113,22 @@ const Home = () => {
     acquireToken();
   }, [instance, accounts]);
 
+  const fetchAnnouncements = async () => {
+    try {
+      const response = await fetch('https://graph.microsoft.com/v1.0/sites/{hostname}:/sites/Shamil/Lists/announcements', {
+        headers: {
+          Authorization: 'Bearer ' + accessToken,
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+    }
+    catch (error) {
+      console.error('Error fetching announcements:', error);
+    }
+  }
+
+
   return (
     <div className="overflow-hidden w-full">
     <Nav/>
