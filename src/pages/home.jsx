@@ -130,7 +130,7 @@ const Home = () => {
       }
     };
 
-    const fetchSiteAndListDetails = async (siteUrl, listName, token) => {
+    const fetchSiteAndListDetails = async (siteUrl, listName) => {
       try {
           // Fetch Site ID
           const siteResponse = await fetch(`https://graph.microsoft.com/v1.0/sites?search=${encodeURIComponent(siteUrl)}`, {
@@ -159,10 +159,9 @@ const Home = () => {
   
   // Example usage:
   const siteUrl = 'https://riyadhholding.sharepoint.com/sites/Shamil';
-  const listName = 'announcements';
-  const token = 'YOUR_ACCESS_TOKEN'; // Replace with the access token obtained from MSAL
+  const listName = 'announcements';// Replace with the access token obtained from MSAL
   
-  fetchSiteAndListDetails(siteUrl, listName, token);
+  fetchSiteAndListDetails(siteUrl, listName);
   
 
 
