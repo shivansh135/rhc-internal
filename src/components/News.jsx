@@ -1,7 +1,7 @@
 
-const News = ({data}) => {
-  console.log(data);
-  if(!data || data.length === 0) {
+const News = ({news}) => {
+  console.log(news);
+  if(!news || news.length === 0) {
     return null
   }
   return (
@@ -17,7 +17,7 @@ const News = ({data}) => {
       </div>
 
       <div className="flex flex-col gap-[20px]">
-      {data.map((item, index) => (
+      {news.map((item, index) => (
           <div key={index} className='flex flex-wrap gap-[30px] items-center px-[30px] border-b-[1px] pb-[26.5px]'>
             <img src={`https://riyadhholding.sharepoint.com/sites/Shamil/Assets/${item.fields.image_name}`} className='w-[106px] h-[70px] bg-slate-300'></img>
 

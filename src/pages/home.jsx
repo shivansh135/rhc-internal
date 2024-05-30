@@ -199,7 +199,7 @@ const Home = () => {
 
           <div className="flex gap-[30px] justify-between mt-[25px]">
             <Poll />
-            <News data={news.value}/>
+            <News news={news}/>
           </div>
 
           <div className="mt-[30px]">
