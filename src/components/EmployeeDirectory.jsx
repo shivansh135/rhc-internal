@@ -57,24 +57,6 @@ const EmployeeDirectory = ({ employees }) => {
           </div>
         ))}
         </div>
-        {/* <div className="w-full  px-[15px]">
-
-
-          <div className="flex gap-[20px] mt-[20px] px-[30px] border-b-[1px] w-full">
-                <div className="w-[80px] h-[80px] bg-slate-300 rounded-lg"></div>
-
-                <div className="text-[#444444] pb-[6px]">
-                    <h1 className="text-[16px]">Employee Name Here</h1>
-                    <div  className="text-[14px] font-light">
-                    <p>Job Title: Web Developer</p>
-                    <p>Phone: +9876543210</p>
-                    <p>Email: name@websitename.com</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div> */}
     </div>
   </div>
   );
