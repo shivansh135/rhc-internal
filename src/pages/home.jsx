@@ -24,6 +24,7 @@ const Home = () => {
   const [accessToken, setAccessToken] = useState(null);
   const [calendarEvents, setCalendarEvents] = useState([]);
   const [plannerTasks, setPlannerTasks] = useState([]);
+  const [announcements, setAnnouncements] = useState([]);
   console.log(accounts)
   useEffect(() => {
     const acquireToken = async () => {
@@ -110,23 +111,25 @@ const Home = () => {
       }
     };
 
+    const fetchAnnouncements = async (token) => {
+      try {
+        const response = await fetch('https://graph.microsoft.com/v1.0/sites/{hostname}:/sites/Shamil/Lists/announcements', {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        });
+        const data = await response.json();
+        console.log('Announcements:', data);
+        setAnnouncements(data.value); // Assuming you have a state setter for announcements
+      } catch (error) {
+        console.error('Error fetching announcements:', error);
+      }
+    };
+
     acquireToken();
   }, [instance, accounts]);
 
-  const fetchAnnouncements = async () => {
-    try {
-      const response = await fetch('https://graph.microsoft.com/v1.0/sites/{hostname}:/sites/Shamil/Lists/announcements', {
-        headers: {
-          Authorization: 'Bearer ' + accessToken,
-        },
-      });
-      const data = await response.json();
-      console.log('Announcements:', data);
-    }
-    catch (error) {
-      console.error('Error fetching announcements:', error);
-    }
-  }
+
 
 
   return (
