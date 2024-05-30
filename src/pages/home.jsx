@@ -177,6 +177,9 @@ const Home = () => {
   }, [instance, accounts]);
 
 
+  if(!news.length || !employeeDirectory.length || !calendarEvents.length || !plannerTasks.length || !announcements.length){
+    return <div>Loading...</div>
+  }
 
 
   return (
@@ -201,7 +204,7 @@ const Home = () => {
 
           <div className="flex gap-[30px] justify-between mt-[25px]">
             <Poll />
-            <News />
+            <News data={news.value}/>
           </div>
 
           <div className="mt-[30px]">
