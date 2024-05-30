@@ -33,13 +33,13 @@ const Home = () => {
   console.log(accounts)
   useEffect(() => {
 
-    const fetchListItems = async (token, siteId, listId, setStateFunction) => {
+    const fetchListItems = async (token, siteId, listId, setStateFunction, name) => {
         try {
             const response = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/lists/${listId}/items?expand=fields`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             const data = await response.json();
-            console.log(`${listId} items:`, data);
+            console.log(`${name} items:`, data);
 
             if (data.value) {
                 setStateFunction(data.value);
@@ -77,7 +77,7 @@ const Home = () => {
         ];
 
         lists.forEach(list => {
-            fetchListItems(response.accessToken, siteId, list.id, list.setStateFunction);
+            fetchListItems(response.accessToken, siteId, list.id, list.setStateFunction,list.name);
         });
 
         } catch (error) {
