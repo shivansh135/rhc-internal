@@ -1,21 +1,13 @@
-import PropTypes from 'prop-types';
 
 const Announcement = ({announcement}) => {
 
-  Announcement.propTypes = {
-    announcement: PropTypes.shape({
-      fields: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
-        preview_en: PropTypes.string.isRequired,
-      }).isRequired,
-    }),
-  };
 
-  if (!announcement) {
+  if (!announcement || !announcement.value || !announcement.value.fields || !announcement.value.fields.Title || !announcement.value.fields.preview_en) {
     return <div>No announcement available.</div>; 
   }
 
-  const { Title, preview_en } = announcement.value.fields;
+  const Title = announcement.value.fields.Title;
+  const preview_en = announcement.value.fields.preview_en;
   console.log('Announcement-Tile:', Title);
   console.log('Announcement-Preview:', preview_en);
 
