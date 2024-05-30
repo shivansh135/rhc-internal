@@ -121,7 +121,7 @@ const Home = () => {
         },
       });
       const data = await response.json();
-      console.log(data);
+      console.log('Announcements:', data);
     }
     catch (error) {
       console.error('Error fetching announcements:', error);
