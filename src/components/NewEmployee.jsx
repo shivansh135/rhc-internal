@@ -11,8 +11,8 @@ const NewEmployee = ({ newEmployee }) => {
 
         <div className="h-[145px] w-[124px] bg-slate-300 rounded-[8px] overflow-hidden">
         <img 
-          src={`https://riyadhholding.sharepoint.com/sites/Shamil/Assets/${newEmployee?.fields.employee_photo}`} 
-          alt={newEmployee?.fields.Title} 
+          src={`https://riyadhholding.sharepoint.com/sites/Shamil/Assets/${newEmployee[0].fields.employee_photo}`} 
+          alt={newEmployee[0].fields.Title} 
           className="object-cover w-full h-full" 
         />
         </div>
@@ -20,8 +20,8 @@ const NewEmployee = ({ newEmployee }) => {
         <h2 className="text-center text-[16px] text-white h-[22.94px] self-stretch">{newEmployee.fields.Title}</h2>
 
         <div className="felx flex-col content-center gap-[5px] pb-[30px] items-center text-center text-white self-stretch border-b-[1px] border-b-[#ffffff57] text-[14px]">
-            <h2 className="font-light">{newEmployee?.fields.job_title_en} </h2>
-            <h2 className="font-medium">{newEmployee?.fields.department_en}</h2>
+            <h2 className="font-light">{newEmployee[0].fields.job_title_en} </h2>
+            <h2 className="font-medium">{newEmployee[0].fields.department_en}</h2>
         </div>
 
         <p className="text-center self-stretch text-[14px] font-light min-h-[41px] text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
