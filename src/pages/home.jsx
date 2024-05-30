@@ -114,7 +114,7 @@ const Home = () => {
 
     const fetchAnnouncements = async (token) => {
       try {
-        const response = await fetch('https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com:/sites/Shamil/Lists/announcement', {
+        const response = await fetch('https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com/sites/Shamil/Lists/announcement', {
           headers: { Authorization: "Bearer" + token },
         });
         const data = await response.json();

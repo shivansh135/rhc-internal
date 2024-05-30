@@ -15,6 +15,7 @@ export const msalConfig = {
     "Tasks.Read",
     // "Group.Read.All",
     "Calendars.Read",
+    "Sites.Read.All"
     ],
   };
   
