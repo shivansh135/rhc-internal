@@ -32,7 +32,7 @@ const UpcomingEvents = ({ events }) => {
             <h1 className="text-[16px] font-[400px]">{event.fields.Title}</h1>
             <div className="flex gap-[10px] items-center">
               <div className="w-[16px] h-[16px] shrink-0 bg-slate-300"></div>
-              <p className="text-[12px] font-[400px]">{normalizeDateTime(event.fields.Start_time)} - {normalizeDateTime(event.end_time)}</p>
+              <p className="text-[12px] font-[400px]">{normalizeDateTime(event.fields.Start_time)} - {normalizeDateTime(event.fields.end_time)}</p>
             </div>
             <div className="flex gap-[10px] items-center">
               <div className="w-[16px] h-[16px] shrink-0 bg-slate-300"></div>
