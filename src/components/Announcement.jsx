@@ -1,8 +1,8 @@
 
-const Announcement = ({announcement}) => {
+const Announcement = ({announcements}) => {
 
 
-  if (!announcement ) {
+  if (!announcements ) {
     return <div>No announcement available.</div>; 
   }
 
