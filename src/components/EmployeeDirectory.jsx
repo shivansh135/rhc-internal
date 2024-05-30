@@ -41,7 +41,7 @@ const EmployeeDirectory = ({ employees }) => {
           <div key={index} className="flex gap-[20px] mt-[20px] px-[30px] border-b-[1px] w-full">
             <div className="w-[80px] h-[80px] bg-slate-300 rounded-lg">
             <img
-                  src={` https://riyadhholding.sharepoint.com/sites/Shamil/Assets/${employee.fields.photo_name}`}
+                  src={`https://riyadhholding.sharepoint.com/sites/Shamil/Assets/${employee.fields.photo_name}`}
                   alt={employee.fields.Title}
                   className="w-full h-full object-cover rounded-lg"
                 />
