@@ -1,5 +1,5 @@
 const Gallery = ({ gallery }) => {
-  
+
   if (!gallery || gallery.length === 0) {
     return <div>No gallery available.</div>;
   }
@@ -20,9 +20,8 @@ const Gallery = ({ gallery }) => {
       {gallery.map((item, index) => (
       <div key={index} className="w-[404px] min-h-[355px] bg-white rounded-lg overflow-hidden">
         <div className="w-full h-[180px] bg-slate-300">
-        <img src={`https://riyadhholding.sharepoint.com/sites/Shamil/${item.image_name}`} alt={item.Title} className="object-cover w-full h-full" />
+        <img src={`https://riyadhholding.sharepoint.com/sites/Shamil/Assets/${item.image_name}`} alt={item.Title} className="object-cover w-full h-full" />
         </div>
-        <div className="w-full h-[180px] bg-slate-300"></div>
         <div className="px-[27.88px] mt-[20px]">
           <h1 className="text-[16px] mb-[5px]">{item.fields.Title}</h1>
           <p className="text-[14px]m font-light text-[#888888]">
