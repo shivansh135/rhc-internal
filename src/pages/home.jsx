@@ -174,10 +174,10 @@ const Home = () => {
 
 
     acquireToken();
-  }, [instance, accounts,announcements,calendarEvents,employeeDirectory,news,plannerTasks]);
+  }, [instance, accounts]);
 
 
-  if(!news.length || !employeeDirectory.length || !calendarEvents.length  || !announcements.length){
+  if(!news.length || !employeeDirectory.length || !calendarEvents.length  || !announcements.length || !newEmployee.length){
     console.log(news.length,employeeDirectory.length,calendarEvents.length,plannerTasks.length,announcements.length);
     return <div>Loading...</div>
   }
