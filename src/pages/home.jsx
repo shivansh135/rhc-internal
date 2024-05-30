@@ -154,23 +154,23 @@ const Home = () => {
       }
     };
 
-    const fetchAnnouncements = async (token,siteId) => {
-      try {
-        const response = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/Lists/8123ed29-3809-4573-bd24-70b60e752aa1/items?expand=fields`, {
-          headers: { Authorization: "Bearer" + token },
-        });
-        const data = await response.json();
-        console.log('Announcements:', data);
+    // const fetchAnnouncements = async (token,siteId) => {
+    //   try {
+    //     const response = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/Lists/8123ed29-3809-4573-bd24-70b60e752aa1/items?expand=fields`, {
+    //       headers: { Authorization: "Bearer" + token },
+    //     });
+    //     const data = await response.json();
+    //     console.log('Announcements:', data);
 
-        if (data.value) {
-          setAnnouncements(data.value);
-        } else {
-          console.error('No announcements found:', data);
-        }
-      } catch (error) {
-        console.error('Error fetching announcements:', error);
-      }
-    }; 
+    //     if (data.value) {
+    //       setAnnouncements(data.value);
+    //     } else {
+    //       console.error('No announcements found:', data);
+    //     }
+    //   } catch (error) {
+    //     console.error('Error fetching announcements:', error);
+    //   }
+    // }; 
 
 
     acquireToken();
@@ -196,7 +196,7 @@ const Home = () => {
           </div>
 
           <div className="mt-[30px] w-full">
-            <Announcement events={announcements} />
+            <Announcement announcement={announcements} />
           </div>
 
           <div className="flex gap-[30px] justify-between mt-[25px]">
