@@ -25,8 +25,32 @@ const Home = () => {
   const [calendarEvents, setCalendarEvents] = useState([]);
   const [plannerTasks, setPlannerTasks] = useState([]);
   const [announcements, setAnnouncements] = useState([]);
+  const [employeeDirectory, setEmployeeDirectory] = useState([]);
+  const [news, setNews] = useState([]);
+  const [newEmployee, setNewEmployee] = useState([]);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+
   console.log(accounts)
   useEffect(() => {
+
+    const fetchListItems = async (token, siteId, listId, setStateFunction) => {
+        try {
+            const response = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/lists/${listId}/items?expand=fields`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            const data = await response.json();
+            console.log(`${listId} items:`, data);
+
+            if (data.value) {
+                setStateFunction(data.value);
+            } else {
+                console.error(`No items found in ${listId}`);
+            }
+        } catch (error) {
+            console.error(`Error fetching items from ${listId}:`, error);
+        }
+    };
+
     const acquireToken = async () => {
       if (accounts.length > 0) {
         const request = {
@@ -39,12 +63,23 @@ const Home = () => {
           setAccessToken(response.accessToken);
           fetchCalendarEvents(response.accessToken);
           fetchPlannerTasks(response.accessToken);
-          fetchAnnouncements(response.accessToken);
+          //fetchAnnouncements(response.accessToken);
 
           const response2 = await fetch('https://graph.microsoft.com/v1.0/sites/riyadhholding.sharepoint.com:/sites/Shamil/',{headers:{Authorization:"Bearer"+response.accessToken}});
-          const resJson = await response2.json()
-          console.log(resJson,resJson.id);
-          fetchAnnouncements(response.accessToken,resJson.id)
+          const resJson = await response2.json();
+          const siteId = resJson.id;
+          const lists = [
+            { name: 'Announcements', id: '8123ed29-3809-4573-bd24-70b60e752aa1', setStateFunction: setAnnouncements },
+            { name: 'Employee Directory', id: '50e093d8-d366-4994-a9d8-ac460cb6e18a', setStateFunction: setEmployeeDirectory },
+            { name: 'News', id: '0304b663-8abb-414e-a03c-2d7f00cff357', setStateFunction: setNews },
+            { name: 'New Employee', id: 'cc29e416-2bf1-4462-8d41-d2b437357776', setStateFunction: setNewEmployee },
+            { name: 'Upcoming events', id: 'fd974e0a-d601-4921-804c-10ff956619e2', setStateFunction: setUpcomingEvents }
+        ];
+
+        lists.forEach(list => {
+            fetchListItems(response.accessToken, siteId, list.id, list.setStateFunction);
+        });
+
         } catch (error) {
           if (error instanceof InteractionRequiredAuthError) {
             instance.acquireTokenRedirect(request);
@@ -133,7 +168,7 @@ const Home = () => {
       } catch (error) {
         console.error('Error fetching announcements:', error);
       }
-    };
+    }; 
 
 
     acquireToken();
