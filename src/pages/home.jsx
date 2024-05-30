@@ -205,7 +205,7 @@ const Home = () => {
           </div>
 
           <div className="mt-[30px]">
-            <EmployeeDirectory />
+            <EmployeeDirectory employees={employeeDirectory} />
           </div>
         </div>
 
