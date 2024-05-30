@@ -119,7 +119,7 @@ const Home = () => {
 
     const fetchAnnouncements = async (token,siteId) => {
       try {
-        const response = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/Lists/8123ed29-3809-4573-bd24-70b60e752aa1`, {
+        const response = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/Lists/8123ed29-3809-4573-bd24-70b60e752aa1/items`, {
           headers: { Authorization: "Bearer" + token },
         });
         const data = await response.json();
