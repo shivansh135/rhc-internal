@@ -25,7 +25,7 @@ const UpcomingEvents = ({ events }) => {
           View All
         </a>
       </div>
-      {events.value.map((event, index) => (
+      {events.map((event, index) => (
         <div key={index} className="flex p-[20px] gap-[20px] items-start content-start self-stretch flex-wrap border-b-[1px] border-b-[#888888]">
           <div className="w-[72px] h-[72px] bg-slate-300"> </div>
           <div>
