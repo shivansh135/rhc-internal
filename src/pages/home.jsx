@@ -39,6 +39,7 @@ const Home = () => {
           setAccessToken(response.accessToken);
           fetchCalendarEvents(response.accessToken);
           fetchPlannerTasks(response.accessToken);
+          fetchAnnouncements(response.accessToken);
         } catch (error) {
           if (error instanceof InteractionRequiredAuthError) {
             instance.acquireTokenRedirect(request);
@@ -114,17 +115,21 @@ const Home = () => {
     const fetchAnnouncements = async (token) => {
       try {
         const response = await fetch('https://graph.microsoft.com/v1.0/sites/{hostname}:/sites/Shamil/Lists/announcements', {
-          headers: {
-            Authorization: 'Bearer ' + token,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
         console.log('Announcements:', data);
-        setAnnouncements(data.value); // Assuming you have a state setter for announcements
+
+        if (data.value) {
+          setAnnouncements(data.value);
+        } else {
+          console.error('No announcements found:', data);
+        }
       } catch (error) {
         console.error('Error fetching announcements:', error);
       }
     };
+
 
     acquireToken();
   }, [instance, accounts]);
