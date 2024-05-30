@@ -227,7 +227,7 @@ const Home = () => {
           </div>
           <hr />
           <div className="px-[30px] mt-[30px]">
-            <NewEmployee />
+            <NewEmployee newEmployee={newEmployee} />
           </div>
           <hr />
           <div className="px-[30px] mt-[30px]">
