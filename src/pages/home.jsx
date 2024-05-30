@@ -233,7 +233,7 @@ const Home = () => {
       </div>
 
       <div className="w-full rounded-lg overflow-hidden mt-[65px]">
-        <Gallery />
+        <Gallery gallery={gallery} />
       </div>
     </div>
   </div>
