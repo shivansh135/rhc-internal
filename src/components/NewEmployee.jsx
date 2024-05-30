@@ -17,7 +17,7 @@ const NewEmployee = ({ newEmployee }) => {
         />
         </div>
 
-        <h2 className="text-center text-[16px] text-white h-[22.94px] self-stretch">{newEmployee.fields[0].Title}</h2>
+        <h2 className="text-center text-[16px] text-white h-[22.94px] self-stretch">{newEmployee[0].fields.Title}</h2>
 
         <div className="felx flex-col content-center gap-[5px] pb-[30px] items-center text-center text-white self-stretch border-b-[1px] border-b-[#ffffff57] text-[14px]">
             <h2 className="font-light">{newEmployee[0].fields.job_title_en} </h2>
